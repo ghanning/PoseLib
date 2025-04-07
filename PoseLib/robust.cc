@@ -247,7 +247,7 @@ RansacStats estimate_shared_focal_relative_pose(const std::vector<Point2D> &poin
     }
 
     // We normalize points here to improve conditioning. Note that the normalization
-    // only ammounts to a uniform rescaling of the image coordinate system
+    // only amounts to a uniform rescaling of the image coordinate system
     // and the cost we minimize is equivalent to the cost in the original image
     // We do not perform shifting as we require pp to remain at [0, 0]
     double scale = normalize_points(x1_norm, x2_norm, T1, T2, true, false, true);
@@ -307,6 +307,10 @@ RansacStats estimate_fundamental(const std::vector<Point2D> &x1, const std::vect
     ransac_opt_scaled.max_epipolar_error /= scale;
     BundleOptions bundle_opt_scaled = bundle_opt;
     bundle_opt_scaled.loss_scale /= scale;
+    if (ransac_opt.score_initial_model) {
+        *F = T2.transpose().inverse() * (*F) * T1.inverse();
+        *F /= F->norm();
+    }
 
     RansacStats stats = ransac_fundamental(x1_norm, x2_norm, ransac_opt_scaled, F, inliers);
 
@@ -351,6 +355,10 @@ RansacStats estimate_homography(const std::vector<Point2D> &x1, const std::vecto
     ransac_opt_scaled.max_reproj_error /= scale;
     BundleOptions bundle_opt_scaled = bundle_opt;
     bundle_opt_scaled.loss_scale /= scale;
+    if (ransac_opt.score_initial_model) {
+        *H = T2 * (*H) * T1.inverse();
+        *H /= H->norm();
+    }
 
     RansacStats stats = ransac_homography(x1_norm, x2_norm, ransac_opt_scaled, H, inliers);
 

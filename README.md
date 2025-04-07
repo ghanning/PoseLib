@@ -98,14 +98,14 @@ Some of the available estimators are listed below, check [pyposelib.cpp](pybind/
 
 | Method | Arguments | (RansacOptions) Threshold |
 | --- | --- | --- |
-| <sub>`estimate_absolute_pose`</sub> | <sub> `(p2d, p3d, camera, ransac_opt,bundle_opt)`</sub> | <sub>`max_reproj_error` </sub> |
-| <sub>`estimate_absolute_pose_pnpl`</sub> | <sub>`(p2d, p3d, l2d_1, l2d_2, l3d_1, l3d_2, camera, ransac_opt, bundle_opt)` </sub> | <sub>`max_reproj_error` (points), `max_epipolar_error` (lines) |
-| <sub>`estimate_generalized_absolute_pose` | <sub>`(p2ds, p3ds, camera_ext, cameras, ransac_opt, bundle_opt)`</sub> | <sub>`max_reproj_error`</sub> |
-| <sub>`estimate_relative_pose`</sub> | <sub>`(x1, x2, camera1, camera2, ransac_opt, bundle_opt)`</sub> | <sub>`max_epipolar_error` </sub>|
-| <sub>`estimate_shared_focal_relative_pose`</sub> | <sub>`(x1, x2, pp, ransac_opt, bundle_opt)`</sub> | <sub>`max_epipolar_error` </sub>|
-| <sub>`estimate_fundamental`</sub> | <sub>`(x1, x2, ransac_opt, bundle_opt)`</sub> | <sub>`max_epipolar_error`</sub> |
-| <sub>`estimate_homography`</sub> | <sub>`(x1, x2, ransac_opt, bundle_opt)`</sub> | <sub>`max_reproj_error`</sub> |
-| <sub>`estimate_generalized_relative_pose`</sub> | <sub>`(matches, camera1_ext, cameras1, camera2_ext, cameras2, ransac_opt, bundle_opt)`</sub> | <sub>`max_epipolar_error`</sub> |
+| <sub>`estimate_absolute_pose`</sub> | <sub> `(p2d, p3d, camera, ransac_opt, bundle_opt, initial_pose=None)`</sub> | <sub>`max_reproj_error` </sub> |
+| <sub>`estimate_absolute_pose_pnpl`</sub> | <sub>`(p2d, p3d, l2d_1, l2d_2, l3d_1, l3d_2, camera, ransac_opt, bundle_opt, initial_pose=None)` </sub> | <sub>`max_reproj_error` (points), `max_epipolar_error` (lines) |
+| <sub>`estimate_generalized_absolute_pose` | <sub>`(p2ds, p3ds, camera_ext, cameras, ransac_opt, bundle_opt, initial_pose=None)`</sub> | <sub>`max_reproj_error`</sub> |
+| <sub>`estimate_relative_pose`</sub> | <sub>`(x1, x2, camera1, camera2, ransac_opt, bundle_opt, initial_pose=None)`</sub> | <sub>`max_epipolar_error` </sub>|
+| <sub>`estimate_shared_focal_relative_pose`</sub> | <sub>`(x1, x2, pp, ransac_opt, bundle_opt, initial_image_pair=None)`</sub> | <sub>`max_epipolar_error` </sub>|
+| <sub>`estimate_fundamental`</sub> | <sub>`(x1, x2, ransac_opt, bundle_opt, initial_F=None)`</sub> | <sub>`max_epipolar_error`</sub> |
+| <sub>`estimate_homography`</sub> | <sub>`(x1, x2, ransac_opt, bundle_opt, initial_H=None)`</sub> | <sub>`max_reproj_error`</sub> |
+| <sub>`estimate_generalized_relative_pose`</sub> | <sub>`(matches, camera1_ext, cameras1, camera2_ext, cameras2, ransac_opt, bundle_opt, initial_pose=None)`</sub> | <sub>`max_epipolar_error`</sub> |
 
 ### Storing poses and estimated camera parameters
 To handle poses and cameras we provide the following classes: 
